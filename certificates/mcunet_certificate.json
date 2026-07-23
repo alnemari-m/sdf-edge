@@ -1,0 +1,58 @@
+{
+  "model": "MCUNet-5FPS",
+  "num_actors": 30,
+  "num_edges": 34,
+  "rank_gamma": 29,
+  "consistent": true,
+  "repetition_vector": {
+    "conv_stem": 1,
+    "dw_1": 1,
+    "pw_1": 1,
+    "dw_2": 1,
+    "res_add_1": 1,
+    "pw_2": 1,
+    "dw_3": 1,
+    "pw_3": 1,
+    "dw_4": 1,
+    "res_add_2": 1,
+    "pw_4": 1,
+    "dw_5": 1,
+    "pw_5": 1,
+    "dw_6": 1,
+    "res_add_3": 1,
+    "pw_6": 1,
+    "dw_7": 1,
+    "pw_7": 1,
+    "dw_8": 1,
+    "res_add_4": 1,
+    "pw_8": 1,
+    "dw_9": 1,
+    "pw_9": 1,
+    "dw_10": 1,
+    "res_add_5": 1,
+    "pw_10": 1,
+    "dw_11": 1,
+    "pw_11": 1,
+    "gap": 1,
+    "fc": 1
+  },
+  "total_firings": 30,
+  "q_max": 1,
+  "tier1": {
+    "rate_consistency": "PROVEN",
+    "buffer_bound_bytes": 124928,
+    "timing_us": 5260
+  },
+  "schedule_specific": {
+    "peak_sram_bytes": 12288,
+    "schedule_length": 30
+  },
+  "energy": {
+    "e_total_uj": 2156.6,
+    "e_dyn_uj": 1841.0,
+    "e_idle_uj": 315.6,
+    "t_iter_us": 5260,
+    "p_avg_mw": 410.0
+  },
+  "verification_time_ms": 25.59739991556853
+}

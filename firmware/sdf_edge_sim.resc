@@ -1,0 +1,15 @@
+# SDF-Edge Renode Simulation Script for STM32H743 (headless)
+
+mach create "sdf-edge"
+machine LoadPlatformDescription @platforms/cpus/stm32h743.repl
+
+# Load the firmware ELF
+sysbus LoadELF $CWD/sdf_edge_firmware.elf
+
+# Log output
+logFile $CWD/renode_output.log true
+usart3 CreateFileBackend $CWD/uart_output.txt true
+
+# Run for 30 seconds virtual time then quit
+emulation RunFor "00:10:00"
+quit

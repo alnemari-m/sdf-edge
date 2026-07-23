@@ -1,0 +1,72 @@
+
+============================================================
+  SDF-Edge: STM32H743 Simulation (Renode)
+  MobileNetV2-MultiRate Tiled Inference
+============================================================
+
+Model: MobileNetV2-MR (simplified 8-actor multi-rate chain)
+Actors: 8, Edges: 7
+Repetition vector q = [16, 8, 8, 4, 4, 2, 1, 1]
+q_max = 16, sum(q) = 44
+
+=== Repetition Vector Verification ===
+Edge Input->Stride2a: 16*1 - 8*2 = 0 [BALANCED]
+Edge Stride2a->DW1: 8*1 - 8*1 = 0 [BALANCED]
+Edge DW1->Stride2b: 8*1 - 4*2 = 0 [BALANCED]
+Edge Stride2b->DW2: 4*1 - 4*1 = 0 [BALANCED]
+Edge DW2->Stride2c: 4*1 - 2*2 = 0 [BALANCED]
+Edge Stride2c->GAP: 2*1 - 1*2 = 0 [BALANCED]
+Edge GAP->FC: 1*1 - 1*1 = 0 [BALANCED]
+Rate consistency: PROVEN (Tier 1)
+
+Analytical buffer bounds (all schedules):
+  Input->Stride2a: 16 tokens * 512B = 8192 bytes
+  Stride2a->DW1: 8 tokens * 256B = 2048 bytes
+  DW1->Stride2b: 8 tokens * 256B = 2048 bytes
+  Stride2b->DW2: 4 tokens * 192B = 768 bytes
+  DW2->Stride2c: 4 tokens * 192B = 768 bytes
+  Stride2c->GAP: 2 tokens * 64B = 128 bytes
+  GAP->FC: 1 tokens * 48B = 48 bytes
+Total analytical bound: 14000 bytes (13 KB)
+
+--- SDF ASAP Schedule (CORRECT) ---
+Schedule length: 44 firings
+Actors fired: 44
+Peak SRAM: 8192 bytes (8 KB)
+Total cycles: 4142K
+Underflows: 0
+Data integrity: OK
+Result: PASSED
+
+--- SDF CASAP Schedule (BUFFER-OPTIMAL) ---
+Schedule length: 44 firings
+Actors fired: 44
+Peak SRAM: 1536 bytes (1 KB)
+Total cycles: 4142K
+Underflows: 0
+Data integrity: OK
+Result: PASSED
+
+=== ASAP vs CASAP Buffer Comparison ===
+ASAP peak SRAM:  8192 bytes (8 KB)
+CASAP peak SRAM: 1536 bytes (1 KB)
+Reduction: 5.3x
+
+--- Naive DAG Schedule (INCORRECT) ---
+Schedule length: 44 firings
+  TOKEN UNDERFLOW on edge Input->Stride2a (firing 0): have=1, need=2
+  TOKEN UNDERFLOW on edge Stride2a->DW1 (firing 0): have=0, need=1
+  TOKEN UNDERFLOW on edge DW1->Stride2b (firing 0): have=0, need=2
+  ... (stopping after 3 underflows)
+Actors fired: 3
+Peak SRAM: 512 bytes (0 KB)
+Total cycles: 24K
+Underflows: 3
+Data integrity: OK
+Result: FAILED (SDF violation detected)
+
+============================================================
+  CONCLUSION: CASAP achieves buffer-optimal scheduling.
+  SDF analysis catches DAG scheduling errors.
+============================================================
+SIMULATION_COMPLETE

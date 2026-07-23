@@ -1,0 +1,54 @@
+{
+  "model": "MobileNetV2-MultiRate",
+  "num_actors": 26,
+  "num_edges": 25,
+  "rank_gamma": 25,
+  "consistent": true,
+  "repetition_vector": {
+    "input_tile": 16,
+    "expand_s2a": 16,
+    "stride2a": 16,
+    "dw_s2a": 8,
+    "pw_s2a": 8,
+    "expand_s2b": 8,
+    "stride2b": 8,
+    "dw_s2b": 4,
+    "pw_s2b": 4,
+    "expand_1": 4,
+    "dw_1": 4,
+    "pw_1": 4,
+    "res_add_1": 4,
+    "expand_2": 4,
+    "dw_2": 4,
+    "pw_2": 4,
+    "res_add_2": 4,
+    "expand_s2c": 4,
+    "stride2c": 4,
+    "dw_s2c": 2,
+    "pw_s2c": 2,
+    "expand_3": 2,
+    "dw_3": 2,
+    "pw_3": 2,
+    "gap": 2,
+    "fc": 1
+  },
+  "total_firings": 141,
+  "q_max": 16,
+  "tier1": {
+    "rate_consistency": "PROVEN",
+    "buffer_bound_bytes": 50976,
+    "timing_us": 38352
+  },
+  "schedule_specific": {
+    "peak_sram_bytes": 16384,
+    "schedule_length": 141
+  },
+  "energy": {
+    "e_total_uj": 15724.32,
+    "e_dyn_uj": 13423.2,
+    "e_idle_uj": 2301.12,
+    "t_iter_us": 38352,
+    "p_avg_mw": 410.0
+  },
+  "verification_time_ms": 17.448000027798116
+}

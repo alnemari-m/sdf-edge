@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Firmware intermediate build artifacts (throwaway).
+# NOTE: the prebuilt firmware/sdf_edge_firmware.elf and the reference
+# firmware/uart_output.txt + firmware/renode_output.log ARE kept on purpose —
+# the artifact docs reference them for reviewers who do not rebuild/run Renode.
+firmware/*.o
+firmware/*.map
+firmware/renode_output.log.[0-9]*
+firmware/uart_output.txt.[0-9]*
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# Reviewer-response and paper-revision internals — not part of the artifact
+response_revision/
+*_Submission.zip
+SDF_Edge_TCAD.tex
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp

@@ -1,0 +1,78 @@
+SDF-Edge Artifact License (Academic / Research Source-Available, Patent Reserved)
+
+Copyright (c) 2026 The SDF-Edge Authors. All rights reserved.
+
+This artifact accompanies the paper "SDF-Edge: Synchronous Dataflow Formalism
+for Verifiable Neural Network Inference on Edge Devices" (CASES 2026 / IEEE
+TCAD). It is made available to enable independent evaluation, reproduction, and
+academic research.
+
+------------------------------------------------------------------------------
+1. COPYRIGHT LICENSE (GRANT)
+------------------------------------------------------------------------------
+Subject to the terms and restrictions below, the copyright holders hereby grant
+you a worldwide, royalty-free, non-exclusive license to use, reproduce, run,
+compile, execute, display, modify, and create derivative works of this software
+and its documentation, and to redistribute such copies and derivative works,
+for the following purposes:
+
+   (a) academic teaching and research;
+   (b) non-commercial evaluation, including artifact evaluation, benchmarking,
+       peer review, and verification of the results reported in the paper; and
+   (c) reproduction and validation of the paper's claims.
+
+Any redistribution, in original or modified form, must retain (i) the above
+copyright notice, (ii) this entire license text, and (iii) the patent notice in
+Section 3. Modified files must carry prominent notices stating that they were
+changed.
+
+------------------------------------------------------------------------------
+2. RESTRICTIONS
+------------------------------------------------------------------------------
+Commercial use is NOT granted by this license. "Commercial use" includes,
+without limitation, use in or for a product or service offered for sale or
+other commercial advantage, and any use by a for-profit entity beyond internal
+evaluation. Commercial use requires a separate written agreement with the
+copyright holders (which, where applicable, must also address the patent rights
+in Section 3).
+
+------------------------------------------------------------------------------
+3. PATENT NOTICE AND RESERVATION OF PATENT RIGHTS
+------------------------------------------------------------------------------
+The methods embodied in this software — including, without limitation, the
+CASAP (Capacity-constrained As-Soon-As-Possible) buffer-scheduling method and
+the associated capacity-constrained schedule construction, buffer-bound proof,
+and certificate-generation techniques described in the accompanying paper — are
+the subject of one or more PENDING PATENT APPLICATIONS, including a United States
+provisional patent application.
+
+ALL PATENT RIGHTS ARE EXPRESSLY RESERVED. No license, express or implied, to any
+patent or pending patent application is granted under this license, whether by
+implication, estoppel, or otherwise. In particular, and notwithstanding the
+copyright license in Section 1, nothing in this license grants any right to
+practice the patented or patent-pending methods for any commercial purpose.
+
+The copyright permissions in Section 1 are provided solely to permit evaluation,
+reproduction, and academic research as described above, and shall not be
+construed as a covenant not to assert, or as a grant of any license to, the
+patents or patent applications identified in this Section 3.
+
+To obtain a patent license (for commercial implementation or otherwise), contact
+the corresponding author of the paper.
+
+------------------------------------------------------------------------------
+4. TRADEMARKS
+------------------------------------------------------------------------------
+This license does not grant permission to use the trade names, trademarks,
+service marks, or product names of the copyright holders or their institutions,
+except as required for reasonable and customary attribution.
+
+------------------------------------------------------------------------------
+5. DISCLAIMER OF WARRANTY AND LIMITATION OF LIABILITY
+------------------------------------------------------------------------------
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

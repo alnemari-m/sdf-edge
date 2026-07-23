@@ -1,0 +1,13 @@
+# SDF-Edge artifact — Python dependencies
+#
+# The core framework (src/) uses ONLY the Python 3 standard library
+# (json, math, os, sys, time, random, collections, fractions, functools,
+#  itertools, xml.etree.ElementTree). There are NO third-party Python
+# dependencies for reproducing every table and certificate in the paper.
+#
+# A working CPython >= 3.8 interpreter is therefore sufficient.
+# (Validated on CPython 3.12.1.)
+#
+# This file is intentionally empty of pip packages. It is retained so that
+#   pip install -r requirements.txt
+# succeeds and documents that no external Python packages are required.

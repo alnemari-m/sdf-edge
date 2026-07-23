@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdf3 type="sdf" version="1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.es.ele.tue.nl/sdf3/xsd/sdf3-sdf.xsd">
+  <applicationGraph name="MobileNetV2-MultiRate">
+    <sdf name="MobileNetV2-MultiRate" type="DNN">
+      <actor name="input_tile" type="DNN_layer">
+        <port name="out_0" type="out" rate="1"/>
+      </actor>
+      <actor name="expand_s2a" type="DNN_layer">
+        <port name="in_0" type="in" rate="1"/>
+        <port name="out_1" type="out" rate="1"/>
+      </actor>
+      <actor name="stride2a" type="DNN_layer">
+        <port name="in_1" type="in" rate="1"/>
+        <port name="out_2" type="out" rate="1"/>
+      </actor>
+      <actor name="dw_s2a" type="DNN_layer">
+        <port name="in_2" type="in" rate="2"/>
+        <port name="out_3" type="out" rate="1"/>
+      </actor>
+      <actor name="pw_s2a" type="DNN_layer">
+        <port name="in_3" type="in" rate="1"/>
+        <port name="out_4" type="out" rate="1"/>
+      </actor>
+      <actor name="expand_s2b" type="DNN_layer">
+        <port name="in_4" type="in" rate="1"/>
+        <port name="out_5" type="out" rate="1"/>
+      </actor>
+      <actor name="stride2b" type="DNN_layer">
+        <port name="in_5" type="in" rate="1"/>
+        <port name="out_6" type="out" rate="1"/>
+      </actor>
+      <actor name="dw_s2b" type="DNN_layer">
+        <port name="in_6" type="in" rate="2"/>
+        <port name="out_7" type="out" rate="1"/>
+      </actor>
+      <actor name="pw_s2b" type="DNN_layer">
+        <port name="in_7" type="in" rate="1"/>
+        <port name="out_8" type="out" rate="1"/>
+      </actor>
+      <actor name="expand_1" type="DNN_layer">
+        <port name="in_8" type="in" rate="1"/>
+        <port name="out_9" type="out" rate="1"/>
+      </actor>
+      <actor name="dw_1" type="DNN_layer">
+        <port name="in_9" type="in" rate="1"/>
+        <port name="out_10" type="out" rate="1"/>
+      </actor>
+      <actor name="pw_1" type="DNN_layer">
+        <port name="in_10" type="in" rate="1"/>
+        <port name="out_11" type="out" rate="1"/>
+      </actor>
+      <actor name="res_add_1" type="DNN_layer">
+        <port name="in_11" type="in" rate="1"/>
+        <port name="out_12" type="out" rate="1"/>
+      </actor>
+      <actor name="expand_2" type="DNN_layer">
+        <port name="in_12" type="in" rate="1"/>
+        <port name="out_13" type="out" rate="1"/>
+      </actor>
+      <actor name="dw_2" type="DNN_layer">
+        <port name="in_13" type="in" rate="1"/>
+        <port name="out_14" type="out" rate="1"/>
+      </actor>
+      <actor name="pw_2" type="DNN_layer">
+        <port name="in_14" type="in" rate="1"/>
+        <port name="out_15" type="out" rate="1"/>
+      </actor>
+      <actor name="res_add_2" type="DNN_layer">
+        <port name="in_15" type="in" rate="1"/>
+        <port name="out_16" type="out" rate="1"/>
+      </actor>
+      <actor name="expand_s2c" type="DNN_layer">
+        <port name="in_16" type="in" rate="1"/>
+        <port name="out_17" type="out" rate="1"/>
+      </actor>
+      <actor name="stride2c" type="DNN_layer">
+        <port name="in_17" type="in" rate="1"/>
+        <port name="out_18" type="out" rate="1"/>
+      </actor>
+      <actor name="dw_s2c" type="DNN_layer">
+        <port name="in_18" type="in" rate="2"/>
+        <port name="out_19" type="out" rate="1"/>
+      </actor>
+      <actor name="pw_s2c" type="DNN_layer">
+        <port name="in_19" type="in" rate="1"/>
+        <port name="out_20" type="out" rate="1"/>
+      </actor>
+      <actor name="expand_3" type="DNN_layer">
+        <port name="in_20" type="in" rate="1"/>
+        <port name="out_21" type="out" rate="1"/>
+      </actor>
+      <actor name="dw_3" type="DNN_layer">
+        <port name="in_21" type="in" rate="1"/>
+        <port name="out_22" type="out" rate="1"/>
+      </actor>
+      <actor name="pw_3" type="DNN_layer">
+        <port name="in_22" type="in" rate="1"/>
+        <port name="out_23" type="out" rate="1"/>
+      </actor>
+      <actor name="gap" type="DNN_layer">
+        <port name="in_23" type="in" rate="1"/>
+        <port name="out_24" type="out" rate="1"/>
+      </actor>
+      <actor name="fc" type="DNN_layer">
+        <port name="in_24" type="in" rate="2"/>
+      </actor>
+      <channel name="ch_0" srcActor="input_tile" srcPort="out_0" dstActor="expand_s2a" dstPort="in_0"/>
+      <channel name="ch_1" srcActor="expand_s2a" srcPort="out_1" dstActor="stride2a" dstPort="in_1"/>
+      <channel name="ch_2" srcActor="stride2a" srcPort="out_2" dstActor="dw_s2a" dstPort="in_2"/>
+      <channel name="ch_3" srcActor="dw_s2a" srcPort="out_3" dstActor="pw_s2a" dstPort="in_3"/>
+      <channel name="ch_4" srcActor="pw_s2a" srcPort="out_4" dstActor="expand_s2b" dstPort="in_4"/>
+      <channel name="ch_5" srcActor="expand_s2b" srcPort="out_5" dstActor="stride2b" dstPort="in_5"/>
+      <channel name="ch_6" srcActor="stride2b" srcPort="out_6" dstActor="dw_s2b" dstPort="in_6"/>
+      <channel name="ch_7" srcActor="dw_s2b" srcPort="out_7" dstActor="pw_s2b" dstPort="in_7"/>
+      <channel name="ch_8" srcActor="pw_s2b" srcPort="out_8" dstActor="expand_1" dstPort="in_8"/>
+      <channel name="ch_9" srcActor="expand_1" srcPort="out_9" dstActor="dw_1" dstPort="in_9"/>
+      <channel name="ch_10" srcActor="dw_1" srcPort="out_10" dstActor="pw_1" dstPort="in_10"/>
+      <channel name="ch_11" srcActor="pw_1" srcPort="out_11" dstActor="res_add_1" dstPort="in_11"/>
+      <channel name="ch_12" srcActor="res_add_1" srcPort="out_12" dstActor="expand_2" dstPort="in_12"/>
+      <channel name="ch_13" srcActor="expand_2" srcPort="out_13" dstActor="dw_2" dstPort="in_13"/>
+      <channel name="ch_14" srcActor="dw_2" srcPort="out_14" dstActor="pw_2" dstPort="in_14"/>
+      <channel name="ch_15" srcActor="pw_2" srcPort="out_15" dstActor="res_add_2" dstPort="in_15"/>
+      <channel name="ch_16" srcActor="res_add_2" srcPort="out_16" dstActor="expand_s2c" dstPort="in_16"/>
+      <channel name="ch_17" srcActor="expand_s2c" srcPort="out_17" dstActor="stride2c" dstPort="in_17"/>
+      <channel name="ch_18" srcActor="stride2c" srcPort="out_18" dstActor="dw_s2c" dstPort="in_18"/>
+      <channel name="ch_19" srcActor="dw_s2c" srcPort="out_19" dstActor="pw_s2c" dstPort="in_19"/>
+      <channel name="ch_20" srcActor="pw_s2c" srcPort="out_20" dstActor="expand_3" dstPort="in_20"/>
+      <channel name="ch_21" srcActor="expand_3" srcPort="out_21" dstActor="dw_3" dstPort="in_21"/>
+      <channel name="ch_22" srcActor="dw_3" srcPort="out_22" dstActor="pw_3" dstPort="in_22"/>
+      <channel name="ch_23" srcActor="pw_3" srcPort="out_23" dstActor="gap" dstPort="in_23"/>
+      <channel name="ch_24" srcActor="gap" srcPort="out_24" dstActor="fc" dstPort="in_24"/>
+    </sdf>
+    <sdfProperties>
+      <actorProperties actor="input_tile">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="50"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="expand_s2a">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="420"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="stride2a">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="380"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="dw_s2a">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="240"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="pw_s2a">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="360"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="expand_s2b">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="400"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="stride2b">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="340"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="dw_s2b">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="200"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="pw_s2b">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="320"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="expand_1">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="380"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="dw_1">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="180"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="pw_1">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="300"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="res_add_1">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="40"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="expand_2">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="360"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="dw_2">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="170"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="pw_2">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="280"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="res_add_2">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="38"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="expand_s2c">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="340"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="stride2c">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="300"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="dw_s2c">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="160"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="pw_s2c">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="260"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="expand_3">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="320"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="dw_3">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="150"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="pw_3">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="240"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="gap">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="30"/>
+        </processor>
+      </actorProperties>
+      <actorProperties actor="fc">
+        <processor type="arm_cortex_m7" default="true">
+          <executionTime time="80"/>
+        </processor>
+      </actorProperties>
+      <channelProperties channel="ch_0">
+        <tokenSize sz="512"/>
+      </channelProperties>
+      <channelProperties channel="ch_1">
+        <tokenSize sz="1024"/>
+      </channelProperties>
+      <channelProperties channel="ch_2">
+        <tokenSize sz="256"/>
+      </channelProperties>
+      <channelProperties channel="ch_3">
+        <tokenSize sz="256"/>
+      </channelProperties>
+      <channelProperties channel="ch_4">
+        <tokenSize sz="384"/>
+      </channelProperties>
+      <channelProperties channel="ch_5">
+        <tokenSize sz="768"/>
+      </channelProperties>
+      <channelProperties channel="ch_6">
+        <tokenSize sz="192"/>
+      </channelProperties>
+      <channelProperties channel="ch_7">
+        <tokenSize sz="192"/>
+      </channelProperties>
+      <channelProperties channel="ch_8">
+        <tokenSize sz="128"/>
+      </channelProperties>
+      <channelProperties channel="ch_9">
+        <tokenSize sz="256"/>
+      </channelProperties>
+      <channelProperties channel="ch_10">
+        <tokenSize sz="256"/>
+      </channelProperties>
+      <channelProperties channel="ch_11">
+        <tokenSize sz="128"/>
+      </channelProperties>
+      <channelProperties channel="ch_12">
+        <tokenSize sz="128"/>
+      </channelProperties>
+      <channelProperties channel="ch_13">
+        <tokenSize sz="256"/>
+      </channelProperties>
+      <channelProperties channel="ch_14">
+        <tokenSize sz="256"/>
+      </channelProperties>
+      <channelProperties channel="ch_15">
+        <tokenSize sz="128"/>
+      </channelProperties>
+      <channelProperties channel="ch_16">
+        <tokenSize sz="128"/>
+      </channelProperties>
+      <channelProperties channel="ch_17">
+        <tokenSize sz="256"/>
+      </channelProperties>
+      <channelProperties channel="ch_18">
+        <tokenSize sz="64"/>
+      </channelProperties>
+      <channelProperties channel="ch_19">
+        <tokenSize sz="64"/>
+      </channelProperties>
+      <channelProperties channel="ch_20">
+        <tokenSize sz="48"/>
+      </channelProperties>
+      <channelProperties channel="ch_21">
+        <tokenSize sz="96"/>
+      </channelProperties>
+      <channelProperties channel="ch_22">
+        <tokenSize sz="96"/>
+      </channelProperties>
+      <channelProperties channel="ch_23">
+        <tokenSize sz="48"/>
+      </channelProperties>
+      <channelProperties channel="ch_24">
+        <tokenSize sz="48"/>
+      </channelProperties>
+    </sdfProperties>
+  </applicationGraph>
+</sdf3>

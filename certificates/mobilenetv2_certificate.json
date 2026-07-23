@@ -1,0 +1,56 @@
+{
+  "model": "MobileNetV2",
+  "num_actors": 28,
+  "num_edges": 30,
+  "rank_gamma": 27,
+  "consistent": true,
+  "repetition_vector": {
+    "conv_stem": 1,
+    "expand_1": 1,
+    "dw_1": 1,
+    "project_1": 1,
+    "expand_2": 1,
+    "res_add_1": 1,
+    "dw_2": 1,
+    "project_2": 1,
+    "expand_3": 1,
+    "dw_3": 1,
+    "project_3": 1,
+    "expand_4": 1,
+    "res_add_2": 1,
+    "dw_4": 1,
+    "project_4": 1,
+    "expand_5": 1,
+    "dw_5": 1,
+    "project_5": 1,
+    "expand_6": 1,
+    "res_add_3": 1,
+    "dw_6": 1,
+    "project_6": 1,
+    "expand_7": 1,
+    "dw_7": 1,
+    "project_7": 1,
+    "conv_head": 1,
+    "gap": 1,
+    "fc": 1
+  },
+  "total_firings": 28,
+  "q_max": 1,
+  "tier1": {
+    "rate_consistency": "PROVEN",
+    "buffer_bound_bytes": 290304,
+    "timing_us": 7212
+  },
+  "schedule_specific": {
+    "peak_sram_bytes": 36864,
+    "schedule_length": 28
+  },
+  "energy": {
+    "e_total_uj": 2956.92,
+    "e_dyn_uj": 2524.2,
+    "e_idle_uj": 432.72,
+    "t_iter_us": 7212,
+    "p_avg_mw": 410.0
+  },
+  "verification_time_ms": 22.325099911540747
+}
