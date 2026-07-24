@@ -44,7 +44,6 @@ src/                          Core framework (Python 3, stdlib only)
 certificates/                 Machine-checkable proof certificates (JSON), one per model
 sdf3_comparison/              SDF3 XML graphs + benchmark inputs for independent cross-checking
 firmware/                     Bare-metal STM32H743 (Cortex-M7) firmware + Renode script + reference UART logs
-response_revision/            Camera-ready sources and reviewer-response materials (not needed for reproduction)
 ```
 
 ---
