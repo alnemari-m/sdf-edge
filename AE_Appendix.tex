@@ -1,0 +1,188 @@
+% Artifact Appendix (cTuning AE template V20201122, filled).
+% -------------------------------------------------------------------
+% TO ADD TO YOUR PAPER: delete this standalone wrapper (from \documentclass
+% down to the "REMOVE ABOVE" line, and the "REMOVE BELOW" line to \end{document})
+% and paste the \appendix ... block into your accepted paper just before its
+% own \end{document}. It uses only \appendix/\section/\subsection/\url, which
+% compile unchanged under IEEEtran.
+% -------------------------------------------------------------------
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% REMOVE ABOVE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+\section{Artifact Appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Abstract}
+
+This artifact reproduces every quantitative result in the paper. The SDF-Edge
+framework models neural-network inference as a synchronous dataflow (SDF) graph
+and applies the CASAP (Capacity-constrained As-Soon-As-Possible) method to
+derive provably bounded buffers and static schedules. It regenerates
+Tables~2--8, the five machine-checkable proof certificates, the SDF3 comparison
+(with an exported SDF3-loadable XML graph for independent cross-verification),
+and the bare-metal Cortex-M7 validation. The core framework is pure Python~3
+using only the standard library (no third-party dependencies) and completes the
+full software suite in under 30 seconds on a commodity machine. The optional
+on-device validation runs on the Renode emulator and needs no physical hardware.
+
+\subsection{Artifact check-list (meta-information)}
+
+{\small
+\begin{itemize}
+  \item {\bf Algorithm: } CASAP capacity-constrained SDF buffer scheduling;
+        rate-consistency and repetition-vector computation; tiered formal
+        verification with proof-certificate generation.
+  \item {\bf Program: } Python~3 framework (\texttt{src/}) and C firmware for
+        STM32H743 (\texttt{firmware/}).
+  \item {\bf Compilation: } None for the Python framework. Optional firmware
+        rebuild uses \texttt{arm-none-eabi-gcc}.
+  \item {\bf Binary: } A prebuilt STM32H743 firmware image
+        (\texttt{sdf\_edge\_firmware.elf}) is included.
+  \item {\bf Model: } Five NN dataflow graphs --- MCUNet, MobileNetV2,
+        MobileNetV2-MultiRate, EfficientNet-B0, ViT-Tiny --- as SDF graphs
+        (\texttt{src/models.py}); all included.
+  \item {\bf Data set: } Seven SDF3 benchmark graphs, included in the archive
+        (no external download).
+  \item {\bf Run-time environment: } Any OS (tested Windows~11, Ubuntu~22.04);
+        CPython~$\geq$~3.8 (validated on 3.12.1), standard library only;
+        optional Renode~$\geq$~1.14.
+  \item {\bf Hardware: } Any x86-64 or ARM host. No GPU, no accelerator, no
+        special hardware. The Cortex-M7 target is emulated in Renode (no board).
+  \item {\bf Execution: } Deterministic; no auto-tuning or randomized search.
+        Part~A runs in $<$~30~s.
+  \item {\bf Metrics: } Buffer size (bytes / KB) and reduction ratio; schedule
+        length (firings); iteration time and FPS; verification time; on-device
+        timing error and SRAM error.
+  \item {\bf Output: } Console tables; JSON proof certificates in
+        \texttt{certificates/}; SDF3-loadable XML in \texttt{sdf3\_comparison/}.
+  \item {\bf Experiments: } Executed via the provided Python scripts; each maps
+        to a specific paper claim (see \S\,Evaluation).
+  \item {\bf How much disk space required (approximately)?: } $<$~20~MB.
+  \item {\bf How much time is needed to prepare workflow (approximately)?: }
+        $<$~5~minutes (install a Python interpreter; no packages to install).
+  \item {\bf How much time is needed to complete experiments (approximately)?: }
+        $<$~1~minute for the full Part~A suite.
+  \item {\bf Publicly available?: } Yes.
+  \item {\bf Code licenses (if publicly available)?: } Source-available for
+        academic evaluation and research; the CASAP method is patent-pending
+        (U.S. provisional) and all patent rights are reserved (see
+        \texttt{LICENSE}).
+  \item {\bf Data licenses (if publicly available)?: } The included SDF3
+        benchmark graphs and NN dataflow models are distributed under the same
+        archive license.
+  \item {\bf Workflow framework used?: } None; plain Python scripts.
+  \item {\bf Archived (provide DOI)?: } \url{https://doi.org/10.5281/zenodo.21521374}
+\end{itemize}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Description}
+
+\subsubsection{How to access}
+The artifact is permanently archived on Zenodo (open access) at
+\url{https://doi.org/10.5281/zenodo.21521374}, corresponding to release
+\texttt{v1.0.0} of \texttt{alnemari-m/sdf-edge}. Download and unpack the
+archive; no account or credentials are required.
+
+\subsubsection{Hardware dependencies}
+None. Any commodity x86-64 or ARM machine suffices; no GPU or special hardware.
+The Cortex-M7 measurements are produced on the Renode STM32H743 model, so no
+physical development board is required.
+
+\subsubsection{Software dependencies}
+Required (Part~A): CPython~$\geq$~3.8; the framework imports only the Python
+standard library (\texttt{requirements.txt} lists no third-party packages).
+Optional (Part~B): Renode~$\geq$~1.14 to run the firmware, and
+\texttt{arm-none-eabi-gcc} only if rebuilding the firmware from source.
+
+\subsubsection{Data sets}
+All input graphs (the five NN dataflow models and the seven SDF3 benchmark
+graphs) are contained in the archive. There are no proprietary or external data
+dependencies.
+
+\subsubsection{Models}
+The five neural-network dataflow models are defined programmatically in
+\texttt{src/models.py}; running the experiment driver emits a proof certificate
+for each under \texttt{certificates/}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Installation}
+No installation is required beyond a Python~3 interpreter:
+\begin{verbatim}
+python --version                  # expect 3.8+ (tested 3.12.1)
+pip install -r requirements.txt   # succeeds; installs nothing (stdlib only)
+\end{verbatim}
+Smoke test (should print \texttt{Ratio: 10.3x}):
+\begin{verbatim}
+cd src && python buffer_proof.py
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment workflow}
+From the \texttt{src/} directory:
+\begin{verbatim}
+python run_experiments.py            # Tables 2-8 + regenerate all certificates
+python buffer_proof.py               # headline CASAP vs ASAP buffer result
+python sdf3_comparison.py            # comparison vs SDF3 + export SDF3 XML
+python sdf3_benchmark_validation.py  # validation on 7 SDF3 benchmark graphs
+\end{verbatim}
+Optional on-device validation, from \texttt{firmware/}:
+\begin{verbatim}
+renode sdf_edge_sim.resc             # boots STM32H743 model, runs firmware
+\end{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Evaluation and expected results}
+Each command reproduces a specific paper claim:
+\begin{itemize}
+  \item {\bf 10.3$\times$ buffer reduction} (CASAP vs ASAP), 26-actor
+        MobileNetV2-MultiRate: \texttt{buffer\_proof.py} prints
+        \texttt{CASAP: 1.5 KB}, \texttt{ASAP: 16.0 KB}, \texttt{Ratio: 10.3x}.
+  \item {\bf 2.4$\times$ over SDF3's best} capacity-constrained result, plus an
+        SDF3-loadable XML export: \texttt{sdf3\_comparison.py}.
+  \item {\bf SDF3 benchmark sweep:} CASAP improves on {\bf 5/7} graphs
+        (1.5$\times$--18.4$\times$): \texttt{sdf3\_benchmark\_validation.py}.
+  \item {\bf Tables 2--8} and the {\bf five proof certificates}:
+        \texttt{run\_experiments.py}. Regenerated \texttt{certificates/*.json}
+        are bit-stable versus the committed files.
+  \item {\bf On-device (Cortex-M7):} 5.3$\times$ reduction on the 8-actor model,
+        $<$~7.4\% timing error, $<$~2.4~KB SRAM error; reference captures in
+        \texttt{firmware/uart\_output.txt} and \texttt{firmware/renode\_output.log}.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment customization}
+New models are added by describing their dataflow graph in
+\texttt{src/models.py}; the framework then derives the repetition vector,
+$q_{\max}$, CASAP/ASAP buffer bounds, a static schedule, timing, and a proof
+certificate automatically. The exporter in \texttt{sdf3\_comparison.py} emits
+standard SDF3 XML that loads directly into the independent
+\texttt{sdf3analysis-sdf} tool for third-party verification.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Notes}
+The zero-dependency, hardware-free design of Part~A is deliberate: it guarantees
+compatibility with any evaluation host and makes the results reproducible in
+seconds. The code is provided for academic evaluation and research; the CASAP
+scheduling method is the subject of a pending U.S. provisional patent
+application and all patent rights are reserved (see \texttt{LICENSE}).
+Evaluation and reproduction of the artifact are expressly permitted.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Methodology}
+Submission, reviewing, and badging methodology:
+\begin{itemize}
+  \item \url{https://www.acm.org/publications/policies/artifact-review-badging}
+  \item \url{http://cTuning.org/ae/submission-20201122.html}
+  \item \url{http://cTuning.org/ae/reviewing-20201122.html}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% REMOVE BELOW %%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
