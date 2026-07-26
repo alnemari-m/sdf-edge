@@ -32,6 +32,10 @@ response_revision/
 *_Submission.zip
 SDF_Edge_TCAD.tex
 
+# Private submission metadata (author contacts, form fill-in) — never publish
+SUBMISSION_AUTHORS.md
+SUBMISSION_FORM.md
+
 # OS / editor
 .DS_Store
 Thumbs.db
